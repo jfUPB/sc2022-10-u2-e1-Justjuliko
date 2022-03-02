@@ -38,8 +38,10 @@ void printArray(struct array *parr)
 
 void getArray(struct array *parr)
 {
-    //leer el tamaño ¬ crear vector en el HEAP
+    //leer el tamaño
+    scanf("%d", &size);
     //leer cada elemento ¬ ciclo controlado por el tamaño
+    
     //ejercicio 7
 }
 
