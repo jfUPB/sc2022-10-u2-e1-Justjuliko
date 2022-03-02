@@ -39,9 +39,9 @@ void printArray(struct array *parr)
 void getArray(struct array *parr)
 {
     //leer el tamaño
-    scanf("%d", &size);
+    scanf("%d", &size_t);
     //leer cada elemento ¬ ciclo controlado por el tamaño
-    
+
     //ejercicio 7
 }
 
