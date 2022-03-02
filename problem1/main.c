@@ -12,8 +12,8 @@
 
 struct array
 {
-    int *pdata;
-    int size;
+    int *pdata; //direccion de un arreglo de enteros
+    int size; //tamaño de los arreglos
 };
 
 void initArray(struct array *);
@@ -38,12 +38,15 @@ void printArray(struct array *parr)
 
 void getArray(struct array *parr)
 {
-    
+    //leer el tamaño ¬ crear vector en el HEAP
+    //leer cada elemento ¬ ciclo controlado por el tamaño
+    //ejercicio 7
 }
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
 {
-    
+    //pasar direccion arrIn1 y direccion arrIn2 y pasarlo a la direccion de arrOut
+    //encontrar elementos comunes de los dos arreglos
 }
 
 void freeMemory(struct array *arr1, struct array *arr2, struct array *arr3)
