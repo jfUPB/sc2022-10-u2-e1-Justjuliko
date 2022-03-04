@@ -45,19 +45,19 @@ void getArray(struct array *parr) //creacion del arreglo
     char num1[16]; //entrada numero size
     char num2[16]; //entrada numeros datos
 
-    if (fgets(num1,5,stdin) != NULL) //orden del teclado
+    if (fgets(num1,5,stdin) != NULL) //orden del teclado size 
     {
         num1[strlen(num1) -1 ] = 0;
     }
-    int chint = sscanf(num1, "%d", &parr->size); //cambio de caracter a integer
+    int chint1 = sscanf(num1, "%d", &parr->size); //cambio de caracter a integer
     
     parr->pdata = malloc(sizeof(int)*parr->size); //alocar en memoria dinamica
 
-    for(int i = 0; i < parr -> size;i++)
+    for(int i = 0; i < parr -> size;i++) //loop entrada de datos arreglo
     {
-        if (fgets(num2,5,stdin) != NULL)
+        if (fgets(num2,5,stdin) != NULL) //orden del teclado datos arreglo
         {
-            num2[strlen(num2) -1 ] = 0;
+            int chint2 = sscanf(num2, "%d", parr->pdata+i); //cambio de caracter a integer
         }
     }
 }
