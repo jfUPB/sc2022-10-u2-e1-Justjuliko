@@ -42,14 +42,24 @@ void getArray(struct array *parr) //creacion del arreglo
     //leer cada elemento ¬ ciclo controlado por el tamaño
     //ejercicio 7
 
-    char num1[16];
-    char num2[16];
+    char num1[16]; //entrada numero size
+    char num2[16]; //entrada numeros datos
 
-    if (fgets(num1,5,stdin) != NULL)
+    if (fgets(num1,5,stdin) != NULL) //orden del teclado
     {
         num1[strlen(num1) -1 ] = 0;
     }
-    int chge = sscanf(num1, "%d", &parr->size);
+    int chint = sscanf(num1, "%d", &parr->size); //cambio de caracter a integer
+    
+    parr->pdata = malloc(sizeof(int)*parr->size); //alocar en memoria dinamica
+
+    for(int i = 0; i < parr -> size;i++)
+    {
+        if (fgets(num2,5,stdin) != NULL)
+        {
+            num2[strlen(num2) -1 ] = 0;
+        }
+    }
 }
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut) //comparacion de los arreglos
