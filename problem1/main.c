@@ -82,8 +82,11 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
         size = arrIn2->size;
     }
 
-    int smsz[size]
-    for (int i = 0; i<size; i++) //ciclo de comparacion, se toma todo el primer arreglo arrIn1 y se le compara cada dato del segundo arreglo arrIn2
+    int smsz[size];
+    for(int i = 0; i<size; i++){ //ciclo de comparacion, se toma todo el primer arreglo arrIn1 y se le compara cada dato del segundo arreglo arrIn2
+
+    } 
+
 }
 
 void freeMemory(struct array *arr1, struct array *arr2, struct array *arr3) //limpieza de la memoria dinamica
