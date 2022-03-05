@@ -83,10 +83,43 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
     }
 
     int smsz[size];
-    for(int i = 0; i<size; i++){ //ciclo de comparacion, se toma todo el primer arreglo arrIn1 y se le compara cada dato del segundo arreglo arrIn2
-
+    for(int var1 = 0; var1<size; var1++) 
+    { 
+        smsz[var1]=-1;
     } 
 
+    int i=0;
+
+    for(int var1=0; var1<arrIn1->size;var1++)
+    {
+        for(int var2=0; var2<arrIn2->size;var2++)
+        {
+            if(arrIn1->pdata[var1]==arrIn2->pdata[var2]) //se leen los datos del arrIn1, se comparan con cada uno de los datos del arrIn2, si i es igual se lanza el dato a arrOut
+            {
+                int condition = 0;
+                for(int var3=0; var3<size; var3++)
+                {
+                    if(arrIn1->pdata[var1]==smsz[var3])
+                    {
+                        var3 = size;
+                        condition = 1;
+                    }
+                }
+                if(condition==0)
+                {
+                    smsz[i] = arrIn2->pdata[var2];
+                    i++;
+                    arrOut->size++;
+                }
+            }
+        }
+    }
+    arrOut->pdata = malloc(sizeof(int)*arrOut->size);
+    
+    for(int var1 = 0; var1<arrOut->size;var1++)
+    {
+        *(arrOut->pdata+var1) = smsz[var1];
+    }
 }
 
 void freeMemory(struct array *arr1, struct array *arr2, struct array *arr3) //limpieza de la memoria dinamica
