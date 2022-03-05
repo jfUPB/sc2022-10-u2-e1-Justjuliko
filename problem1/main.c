@@ -65,8 +65,25 @@ void getArray(struct array *parr) //creacion del arreglo
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut) //comparacion de los arreglos
 {
     //pasar direccion arrIn1 y direccion arrIn2 y pasarlo a la direccion de arrOut
-
     //encontrar elementos comunes de los dos arreglos
+    int size;
+    arrOut->size = 0; //se compara cual es el mas grande y se le da el valor del mas grande al arreglo arrOut
+
+    if(arrIn1->size>arrIn2->size)
+    {
+        size = arrIn1->size;
+    }
+    else if(arrIn2->size>arrIn1->size)
+    {
+        size = arrIn2->size;
+    }
+    else if(arrIn2->size == arrIn1->size)
+    {
+        size = arrIn2->size;
+    }
+
+    int smsz[size]
+    for (int i = 0; i<size; i++) //ciclo de comparacion, se toma todo el primer arreglo arrIn1 y se le compara cada dato del segundo arreglo arrIn2
 }
 
 void freeMemory(struct array *arr1, struct array *arr2, struct array *arr3) //limpieza de la memoria dinamica
