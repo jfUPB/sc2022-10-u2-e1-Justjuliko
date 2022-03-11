@@ -2,6 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+//prueba push
+
 #ifdef DOLOG
 #define LOG(...) fprintf(log, __VA_ARGS__);
 #else
@@ -10,11 +12,11 @@
 
 struct array
 {
-    int *pdata;
-    int size;
+    int *pdata; //direccion de un arreglo de enteros
+    int size; //tamaño de los arreglos
 };
 
-void initArray(struct array *);
+void initArray(struct array *); 
 void getArray(struct array *);
 void arrayCommon(struct array *, struct array *, struct array *);
 void printArray(struct array *);
@@ -25,34 +27,110 @@ void initArray(struct array *arr){
     arr->size = -1;
 }
 
-void printArray(struct array *parr)
+void printArray(struct array *parr) //impresion del arreglo 
 {
-    for (int i = 0; i < parr->size; i++)
+    for (int i = 0; i < parr->size; i++) //eleccion del arreglo arrIn1,arrIn2,arrOut
     {
         printf("%d ", parr->pdata[i]);
     }
     printf("\n");
 }
 
-void getArray(struct array *parr)
+void getArray(struct array *parr) //creacion del arreglo
 {
+    //leer el tamaño
+    //leer cada elemento ¬ ciclo controlado por el tamaño
+    //ejercicio 7
+
+    char num1[16]; //entrada numero size
+    char num2[16]; //entrada numeros datos
+
+    if (fgets(num1,5,stdin) != NULL) //orden del teclado size 
+    {
+        num1[strlen(num1) -1 ] = 0;
+    }
+    int chint1 = sscanf(num1, "%d", &parr->size); //cambio de caracter a integer
     
+    parr->pdata = malloc(sizeof(int)*parr->size); //alocar en memoria dinamica
+
+    for(int i = 0; i < parr -> size;i++) //loop entrada de datos arreglo
+    {
+        if (fgets(num2,5,stdin) != NULL) //orden del teclado datos arreglo
+        {
+            int chint2 = sscanf(num2, "%d", parr->pdata+i); //cambio de caracter a integer
+        }
+    }
 }
 
-void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
+void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut) //comparacion de los arreglos
 {
+    //pasar direccion arrIn1 y direccion arrIn2 y pasarlo a la direccion de arrOut
+    //encontrar elementos comunes de los dos arreglos
+    int size;
+    arrOut->size = 0; //se compara cual es el mas grande y se le da el valor del mas grande al arreglo arrOut
+
+    if(arrIn1->size>arrIn2->size)
+    {
+        size = arrIn1->size;
+    }
+    else if(arrIn2->size>arrIn1->size)
+    {
+        size = arrIn2->size;
+    }
+    else if(arrIn2->size == arrIn1->size)
+    {
+        size = arrIn2->size;
+    }
+
+    int smsz[size];
+    for(int var1 = 0; var1<size; var1++) 
+    { 
+        smsz[var1]=-1;
+    } 
+
+    int i=0;
+
+    for(int var1=0; var1<arrIn1->size;var1++)
+    {
+        for(int var2=0; var2<arrIn2->size;var2++)
+        {
+            if(arrIn1->pdata[var1]==arrIn2->pdata[var2]) //se leen los datos del arrIn1, se comparan con cada uno de los datos del arrIn2, si i es igual se lanza el dato a arrOut
+            {
+                int condition = 0;
+                for(int var3=0; var3<size; var3++)
+                {
+                    if(arrIn1->pdata[var1]==smsz[var3])
+                    {
+                        var3 = size;
+                        condition = 1;
+                    }
+                }
+                if(condition==0)
+                {
+                    smsz[i] = arrIn2->pdata[var2];
+                    i++;
+                    arrOut->size++;
+                }
+            }
+        }
+    }
+    arrOut->pdata = malloc(sizeof(int)*arrOut->size);
     
+    for(int var1 = 0; var1<arrOut->size;var1++)
+    {
+        *(arrOut->pdata+var1) = smsz[var1];
+    }
 }
 
-void freeMemory(struct array *arr1, struct array *arr2, struct array *arr3)
+void freeMemory(struct array *arr1, struct array *arr2, struct array *arr3) //limpieza de la memoria dinamica
 {
-    free(arr1->pdata);
+    free(arr1->pdata); //limpieza del arrIn1
     free(arr1);
 
-    free(arr2->pdata);
+    free(arr2->pdata); //limpieza del arrIn2
     free(arr2);
 
-    free(arr3->pdata);
+    free(arr3->pdata); //limpieza arr3? arrOut?
     free(arr3);
 }
 
@@ -72,17 +150,17 @@ int main(void)
 
     LOG("creating an object for each array\n");
 
-    struct array *arr1 = malloc(sizeof(struct array) * 1);
+    struct array *arr1 = malloc(sizeof(struct array) * 1); //ArrIn1 en memoria dinamica
     initArray(arr1);
-    struct array *arr2 = malloc(sizeof(struct array) * 1);
+    struct array *arr2 = malloc(sizeof(struct array) * 1); //ArrIn2 en memoria dinamica
     initArray(arr2);    
-    struct array *arr3 = malloc(sizeof(struct array) * 1);
+    struct array *arr3 = malloc(sizeof(struct array) * 1); //ArrOut en memoria dinamica?
     initArray(arr3);
 
 
     LOG("Init command loop\n");
 
-    while (fgets(commandBuf, sizeof(commandBuf), stdin) != NULL)
+    while (fgets(commandBuf, sizeof(commandBuf), stdin) != NULL) //comandos?
     {
         commandBuf[strlen(commandBuf) - 1] = 0;
 
